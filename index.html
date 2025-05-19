@@ -10,7 +10,10 @@
 <body>
     <nav>
         <div class="nav-content">
-            <div class="logo">Portfolio</div>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">Developer's Journey</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -21,7 +24,27 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
+        <div class="mobile-nav" aria-hidden="true">
+            <div class="mobile-nav-header">
+                <button class="close-menu-btn" aria-label="Close navigation">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mobile-nav-content">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
+    <script src="mobile-menu.js"></script>
 
     <section id="home" class="hero">
         <div class="hero-content">
@@ -35,7 +58,7 @@
         <h2>About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I am a Full Stack Web Developer with over 5 years of experience in building scalable and efficient web applications. My journey began at Vellore Institute of Technology, where I earned my Bachelor's in Electronics and Communication Engineering, developing a strong foundation in both hardware and software domains.</p>
+                <p>I am a Full Stack Web Developer with over 6 years of experience in building scalable and efficient web applications. My journey began at Vellore Institute of Technology, where I earned my Bachelor's in Electronics and Communication Engineering, developing a strong foundation in both hardware and software domains.</p>
                 
                 <p>Throughout my career, I've worked with leading organizations including TCS, Emproto Technologies, and currently at Amadeus Software Labs, where I've honed my skills in full-stack development, DevOps, and cloud-native technologies. My expertise spans across modern web development frameworks, cloud platforms, and container orchestration tools.</p>
                 
@@ -164,7 +187,7 @@
         </div>
     </section>
 
-    <section id="experience" class="experience">
+    <section id="experience">
         <h2>Experience</h2>
         <div class="timeline">
             <div class="timeline-item">
@@ -306,6 +329,28 @@
         <p>&copy; 2025 My Portfolio. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+            mobileNav.classList.remove('active');
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+        });
+    });
+</script>
 </body>
 </html>
